@@ -58,7 +58,50 @@ public class rotate {
         }
     }
 
-    public void rotate_
+    public void rotate_reverse(int[] nums, int k) {
+		// Divide the array into 2 parts: k and n-k
+		// Reverse each array and then reverse the whole array
+		// reverse(a.b) = reverse(b).reverse(a)
+		// reverse(reverse(a).reverse(b)) = b.a.
+		// O(1) space, O(n) time
+
+        if (k > nums.length) {
+            k = k % nums.length;
+        }
+        
+        if (k < 0) {
+            k = nums.length - ((-k) % nums.length);
+        }
+		
+		int m = nums.length - k;
+
+		// Reverse the first part of array
+		int j = m - 1;
+		for (int i = 0; i < j; ++i) {
+			int temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;
+			--j;
+		}
+
+		// Reverse the second part
+		j = nums.length - 1;
+		for (int i = m; i < j; ++i) {
+			int temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;	
+			--j;
+		}
+
+		// Reverse the whole array
+		j = nums.length - 1;
+		for (int i = 0; i < j; ++i) {
+			int temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;
+			--j;
+		}
+	}
 
     public static void main(String[] args) {
         // Test for rotating string
@@ -74,7 +117,7 @@ public class rotate {
         int k6 = -1;
 
         rotate test_obj = new rotate();
-        test_obj.rotate_bubble(test1, 0);
+        test_obj.rotate_reverse(test1, -1);
         System.out.println(Arrays.toString(test1));
     }
 }
