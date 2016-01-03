@@ -21,11 +21,13 @@ public class word_ladder {
 		Queue<String> search_list = new LinkedList<String>();
 		search_list.add(word);
 		while (search_list.size() > 0) {
-			++depth;
-			for (int i = 0; i < search_list.size(); ++i) {
+			int search_size = search_list.size();
+			for (int i = 0; i < search_size; ++i) {
 				String ladder = search_list.remove();
-				if (distance(ladder, target) == 1)
+				if (distance(ladder, target) == 1) {
+					++depth;
 					return depth;
+				}
 				for (String dict_word : dict) {
 					int dist = distance(ladder, dict_word);
 					if (dist == 1) {
@@ -36,6 +38,7 @@ public class word_ladder {
 					} 
 				}
 			}	
+			++depth;
 		}
 		return -1;
 	}
@@ -59,7 +62,7 @@ public class word_ladder {
 		word_ladder test = new word_ladder();
 		String[] dict = new String[] {"hot", "dot", "dog", "lot", "log"};
 		String word = "hit";
-		String target = "cog";
+		String target = "to";
 		int dist = shortestnStep(word, target, dict);
 		System.out.println(dist);
 	}
