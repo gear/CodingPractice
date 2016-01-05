@@ -13,7 +13,9 @@ public class median_sorted {
 			return (a[a.length/2-1] + a[a.length/2]) / (float)2.0;
 		}
 	}
-	
+
+	// This approach can be improved by counting while merging
+	// Space is improved to O(1), time is still O(n), but Theta(n/2)	
 	public float median_naive(int[] a, int[] b) {
 		
 		if (a == null || b == null)
