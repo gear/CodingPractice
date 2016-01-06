@@ -68,12 +68,12 @@ public class ExplodeMatrix {
 
 	public static void main(String[] args) {
 		ExplodeMatrix test = new ExplodeMatrix();
-		int[] r1 = new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1};
+		int[] r1 = new int[] {2, 1, 1, 1, 1, 1, 1, 1, 1};
 		int[] r2 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
 		int[] r3 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
-		int[] r4 = new int[] {1, 1, 1, 1, 0, 1, 1, 1, 1};
-		int[] r5 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
-		int[] r6 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
+		int[] r4 = new int[] {2, 1, 1, 1, 0, 1, 1, 1, 1};
+		int[] r5 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 2};
+		int[] r6 = new int[] {1, 1, 1, 1, 2, 1, 1, 1, 1};
 		int[] r7 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
 		int[] r8 = new int[] {1, 1, 1, 1, 0, 1, 1, 1, 1};
 		int[] r9 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
