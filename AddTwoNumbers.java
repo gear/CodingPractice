@@ -60,37 +60,45 @@ public class AddTwoNumbers {
 		DigitNode result = new DigitNode();	
 		DigitNode c = result;
 		int carry = 0;
-		while (a.getNext() != null && b.getNext() != null) {
+		while (a != null && b != null) {
 			carry = c.setVal(a.getVal() + b.getVal() + carry);
 			a = a.getNext();
 			b = b.getNext();
-			c.setNext(new DigitNode());
-			c = c.getNext();
+			if (a != null || b != null) {
+				c.setNext(new DigitNode());
+				c = c.getNext();
+			}
 		}
-		while (b.getNext() != null) {
+		while (b != null) {
 			carry = c.setVal(b.getVal() + carry);
-			c.setNext(new DigitNode());
 			b = b.getNext();
-			c = c.getNext();
+			if (b != null) {
+				c.setNext(new DigitNode());
+				c = c.getNext();
+			}
 		}
-		while (a.getNext() != null) {
+		while (a != null) {
 			carry = c.setVal(a.getVal() + carry);
-			c.setNext(new DigitNode());
 			a .getNext();
-			c = c.getNext();
+			if (a != null) {
+				c.setNext(new DigitNode());
+				c = c.getNext();
+			}
 		}
 
 		while (carry > 0) {
-			c.setVal(carry%10);
-			carry = carry / 10;
+			System.out.print(carry);
+			c.setNext(new DigitNode());
+			c = c.getNext();
+			carry = c.setVal(carry % 10);
 		}
 
 		return result;
 	}	
 
 	public static void main(String[] args) {
-		DigitNode lsa = new DigitNode(0, new DigitNode(3));
-		DigitNode lsb = new DigitNode(2, new DigitNode(8, new DigitNode(2)));
+		DigitNode lsa = new DigitNode(8, new DigitNode(9, new DigitNode(9)));
+		DigitNode lsb = new DigitNode(9, new DigitNode(9, new DigitNode(9)));
 
 		AddTwoNumbers test = new AddTwoNumbers();
 		DigitNode result = test.add2(lsa, lsb);
