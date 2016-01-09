@@ -4,6 +4,7 @@
 import java.util.ArrayList;
 
 public class SpiralMatrix {
+	/* O(n) space solution */
 	public void printSprial(int[][] mat) {
 
 		// Input checking
@@ -94,6 +95,82 @@ public class SpiralMatrix {
 				return -1;
 		}
 	}
+	
+	/* Think of the matrix as layers */
+	public int[] toSpiral(int[][] mat) throws NullPointerException {
+	
+		if (mat == null) 
+			throw new NullPointerException("Input matrix is null");
+		if (mat.length <= 0)
+			throw new NullPointerException("Input matrix is empty");
+		if (mat[0] == null)
+			throw new NullPointerException("Matrix is corrupted");
+		if (mat[0].length <= 0)
+			throw new NullPointerException("Matrix rows are empty");
+		
+		int n = mat.length;
+		int m = mat[0].length;
+		
+		int s = m*n;
+		int[] result = new int[m*n];
+		int k = 0;
+
+		int layer = 0;
+
+		int nlayer = (m < n) ? (m / 2) : (n / 2);
+		while (layer <= nlayer) {
+
+			int i = 0;
+			int j = 0;
+
+			// right
+			i = layer;
+			int j_start = layer;	
+			int j_end = (m-1) - layer;
+			for (j = j_start; j <= j_end; ++j) {
+				result[k] = mat[i][j];
+				++k;
+			}
+			if (k == s) 
+				break;
+	
+			// down
+			j = j_end;
+			int i_start = layer + 1;
+			int i_end = (n-1) - layer;
+			for (i = i_start; i <= i_end; ++i) {
+				result[k] = mat[i][j];
+				++k;
+			}
+			if (k == s) 
+				break;
+
+			// left
+			i = i_end;
+			j_start = (m-1) - layer - 1;
+			j_end = layer;
+			for (j = j_start; j >= j_end; --j) {
+				result[k] = mat[i][j];
+				++k;
+			}
+			if (k == s) 
+				break;
+
+			// up
+			j = j_end;
+			i_start = (n-1) - layer - 1;
+			i_end = layer + 1;
+			for (i = i_start; i >= i_end; --i) {
+				result[k] = mat[i][j];
+				++k;
+			}
+			if (k == s) 
+				break;
+			++layer;		
+		}
+
+		return result;
+	}
 
 	public static void main (String[] args) {
 		SpiralMatrix test = new SpiralMatrix();
@@ -101,7 +178,17 @@ public class SpiralMatrix {
 		int[] r2 = new int[] {5, 6, 7, 8, 5, 1, 2, 4};
 		int[] r3 = new int[] {7, 6, 5, 4, 3, 1, 0, 8};
 		int[][] mat = new int[][] {r1, r2, r3};
+
+		int[] result = test.toSpiral(mat);
 		
-		test.printSprial(mat);
+		System.out.println("Input Matrix:");
+		for (int x = 0; x < mat.length; ++x) {
+			for (int y = 0; y < mat[0].length; ++y)
+				System.out.print(mat[x][y] + " ");
+			System.out.print("\n");
+		}
+		System.out.println("Output Spiral Array:");
+		for (int x = 0; x < result.length; ++x)
+			System.out.print(result[x] + " ");
 	}
 }
