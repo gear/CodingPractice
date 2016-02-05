@@ -3,11 +3,11 @@ import java.util.HashMap;
 
 public class StringEx {
 
-/* Ex1.1: Implement an algorithm to determine if a string is all unique
- * using extra data strucuture. Assumption: Only ASCII.
- 	 * Signature: boolean isAllUniqueASCII(char[] str);
- 	 */
-	public boolean isAllUniqueASCII(char[] str) {
+    /* Ex1.1: Implement an algorithm to determine if a string is all unique
+     * using extra data strucuture. Assumption: Only ASCII.
+     * Signature: boolean isAllUniqueASCII(char[] str);
+     */
+    public boolean isAllUniqueASCII(char[] str) {
 		if (str == null)
 			return false;
 		if (str.length < 2)
@@ -18,54 +18,61 @@ public class StringEx {
 			visited[i] = false;
 		}
 		for (int i = 0; i < str.length; ++i) {
-			if (visited[i])
+			if (visited[str[i]])
 				return false;
 			else
-				visited[i] = true;
+				visited[str[i]] = true;
 		}
 		return true;
-}
+    }
 
-/* Ex1.2: Implement an algorithm to determine if a string is all unique
- * using extra data structure. Asumption: Any character.
- * Signature: boolean isAllUnique(char[] str);
- */
-public boolean isAllUnique(char[] str) {
-	if (str == null)
-			return false;
-		if (str.length < 2)
-			return true;
+    /* Ex1.2: Implement an algorithm to determine if a string is all unique
+     * using extra data structure. Asumption: Any character.
+     * Signature: boolean isAllUnique(char[] str);
+     */
+    public boolean isAllUnique(char[] str) {
+    	if (str == null)
+    			return false;
+    		if (str.length < 2)
+    			return true;
 
-	HashSet<char> visited = new HashSet<char>();
-	for (int i = 0; i < str.length; ++i) {
-		if (visited.contains(str[i]))
-			return false;
-		else
-			visited.add(str[i]);
-	}
-	return true;
-}
+    	HashSet<Character> visited = new HashSet<Character>();
+    	for (int i = 0; i < str.length; ++i) {
+    		if (visited.contains(str[i]))
+    			return false;
+    		else
+    			visited.add(str[i]);
+    	}
+    	return true;
+    }
 
-/* Ex1.3: Implement an algorithm ot determine if a string is all unique
- * without using extra data structure. Assumption: Only from A to Z.
- * Signature: boolean isAllUniqueAZ(char[] str);
- */
-public boolean isAllUniqueAZ(char[] str) {
-	if (str == null)
-			return false;
-		if (str.length < 2)
-			return true;
+    /* Ex1.3: Implement an algorithm ot determine if a string is all unique
+     * without using extra data structure. Assumption: Only from A to Z.
+     * Signature: boolean isAllUniqueAZ(char[] str);
+     */
+    public boolean isAllUniqueAZ(char[] str) {
+    	if (str == null)
+    			return false;
+    		if (str.length < 2)
+    			return true;
 
-	long visitedMask = 0;
-	for (int i = 0; i < str.length; ++i) {
-		int shift = str[i] - 'A';
-		long checker = 0x1 << var;
-		if (visitedMask & checker > 0)
-			return false;
-		else
-			visitedMask |= checker;
-	} // iterate str
-	return true;
-}
+    	long visitedMask = 0L;
+    	for (int i = 0; i < str.length; ++i) {
+    		int shift = str[i] - 'A';
+    		long checker = 0x1L << shift;
+    		if ((visitedMask & checker) > 0)
+    			return false;
+    		else
+    			visitedMask |= checker;
+    	} // iterate str
+    	return true;
+    }
 
+    public static void main(String[] args) {
+        StringEx test = new StringEx();
+    	char[] str = new String("abcdeabcde").toCharArray();
+    	System.out.println(test.isAllUniqueAZ(str));
+    	System.out.println(test.isAllUniqueASCII(str));
+    	System.out.println(test.isAllUnique(str));
+    }
 }
