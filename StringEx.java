@@ -68,11 +68,46 @@ public class StringEx {
     	return true;
     }
 
+    /* Ex2: Write code to reverse C string */
+
+    /* Ex3: Design algorithm to remove duplicate without additional buffer
+     * one or two variables are ok, extra O(n) space is not. Return the new
+     * length of the modified string.
+     * Signature: int removeDuplicate(char[] str);
+     */
+    public int removeDuplicate(char[] str) {
+
+      if (str == null)
+        return 0;
+      if (str.length < 2)
+        return 1;
+
+      int len = str.length;
+      int tail = len - 1;
+      for (int i = 0; i < tail; ++i) {
+        for (int j = i+1; j <= tail; ++j) {
+          if (str[i] == str[j]) {
+            while(tail >= j && str[j] == str[i]) {
+              str[j] = str[tail--];
+            }
+          } 
+        }
+      }
+      return tail+1;
+    } // This solution is correct, but it doesn't preserve the order of str.
+
+    public int removeDuplicates(char[] str) {
+
+
+    }
+
+
     public static void main(String[] args) {
-        StringEx test = new StringEx();
-    	char[] str = new String("abcdeabcde").toCharArray();
-    	System.out.println(test.isAllUniqueAZ(str));
+      StringEx test = new StringEx();
+    	char[] str = new String("abcabcabc").toCharArray();
     	System.out.println(test.isAllUniqueASCII(str));
     	System.out.println(test.isAllUnique(str));
+      System.out.println(test.removeDuplicate(str));
+      System.out.println(str);
     }
 }
